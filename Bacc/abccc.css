@@ -1,0 +1,21 @@
+h1 {
+    color: red;
+} 
+#x{
+    color: blue;
+}
+.xx{
+    color: green;
+}
+/*h2 {
+    color: #111;
+    font-size: 25px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 55;
+    text-transform: uppercase;
+    text-decoration: underline;
+    line-height: 1.25 x 25px;
+*/
+.xxx p {
+    color: pink;
+}
