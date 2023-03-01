@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jackpot</title>
+</head>
+<body>
+    <script type="text/javascript">
+        const a = [];
+        const b = [];
+        const dd= [];
+        const dd1 = [];
+        for(let i = 0; i < 6;i++){
+            var n = prompt("Nhập số trong khoảng 1 -> 55: ");    
+            while(isNaN(n) || n < 1 || n > 55 || dd1[n] != undefined) n = prompt("Nhập số không phù hợp, vui lòng nhập lại: ")
+            a.push(n);
+            dd1[n] = 1;
+            var randomNum = parseInt(Math.random() * 100);
+            while(dd[randomNum] != undefined || randomNum < 01 || randomNum > 55) randomNum = parseInt(Math.random() * 100);
+            b.push(randomNum);
+            dd[randomNum] = 1;
+        }
+        var tmp = 0;
+        for(let i = 0; i < 6;i++){
+            if(dd[a[i]] == 1) tmp++;
+        }
+        if(tmp <= 2) alert("Chúc bạn may mắn lần sau!"); 
+        if(tmp == 3) alert("Trúng 200.000");
+        if(tmp == 4) alert("Trúng 1.700.000");
+        if(tmp == 5) alert("Trúng 82.500.000");
+        if(tmp == 6) alert("Jackpot!!!!!! Trúng 30 tỷ");
+        for(let i = 0; i < 6; i++){
+            console.log(b[i]);
+        }
+
+    </script>
+</body>
+</html>
