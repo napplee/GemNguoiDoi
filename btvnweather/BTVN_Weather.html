@@ -21,20 +21,21 @@
         xhttp.onload = function(){
             var res = this.responseText;
             var p = JSON.parse(res);
-            //console.log(p);
+            console.log(p);
             for(var i = 0;i < p.list.length;i++){
                 console.log(p.list[i]);
                 var temparature = p.list[i].main.temp + "°";
+                var link = "http://openweathermap.org/img/wn/" + p.list[i].weather[0].icon+"@2x.png";
                 var tmp =  `
                 <div class = "col-3">
                     <p class = "day">${p.list[i].dt_txt}</p>
                     <div class = "row">
                         <div class = "col-6">
                             <h1 class = "temp">${temparature}</h1>
-                            <p class = "description">broken clouds</p>
+                            <p class = "description">${p.list[i].weather[0].description}</p>
                         </div>
                         <div class = "col-6">
-                            <img src =http://openweathermap.org/img/wn/04n@2x.png>
+                            <img src =${link}>
                         </div>
                         </div>
                     </div>
