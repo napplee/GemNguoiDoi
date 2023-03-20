@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="library/bootstrap-5.2.3-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="BTVN_Weather.css">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <div class = "container">
+            <div class = "row" id = "list">
+
+            </div>
+        </div>
+    </section>
+    <script type = "text/javascript">
+        var xhttp = new XMLHttpRequest();
+        xhttp.onload = function(){
+            var res = this.responseText;
+            var p = JSON.parse(res);
+            //console.log(p);
+            for(var i = 0;i < p.list.length;i++){
+                console.log(p.list[i]);
+                var temparature = p.list[i].main.temp + "°";
+                var tmp =  `
+                <div class = "col-3">
+                    <p class = "day">${p.list[i].dt_txt}</p>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <h1 class = "temp">${temparature}</h1>
+                            <p class = "description">broken clouds</p>
+                        </div>
+                        <div class = "col-6">
+                            <img src =http://openweathermap.org/img/wn/04n@2x.png>
+                        </div>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('list').innerHTML += tmp;
+            }
+            
+        }
+        xhttp.open("GET","https://api.openweathermap.org/data/2.5/forecast?q=Hanoi,vietnam&appid=09a71427c59d38d6a34f89b47d75975c&units=metric");
+        xhttp.send();
+    </script>
+</body>
+</html>
