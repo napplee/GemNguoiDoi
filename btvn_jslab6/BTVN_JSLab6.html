@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="btvnjslab6.css">
+    <link rel="stylesheet" href="library/bootstrap-5.2.3-dist/css/bootstrap.min.css"/>
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <div class = "container">
+            <div class="topnav">
+                <a class="active" href="#home" id = "home">Home</a>
+                <input type="text" placeholder="Search..">
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class = "content">
+                <div class = "row">
+                    <div class = "col-3" id = "leftSide">
+                        <p class = "search"> Search preference</p>
+                        <form action="/action_page.php">
+                            <label for="vol" class = "search">Price range: </label>
+                            <input type="range" id="vol" name="vol" min="0$" max="50000$">
+                        </form>
+                        
+                        <form action="/action_page.php">
+                            <label for="vol" class = "search">Location:</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Kuwait City</option>
+                                <option value="1">Ho Chi Minh City</option>
+                                <option value="2">Ha Noi</option>
+                                <option value="3">London</option>
+                              </select>
+                        </form>
+                        <form action="/action_page.php">
+                            <label for="vol" class = "search">Category:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                <label class="form-check-label" for="flexCheckChecked" class = "search">Apple</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                <label class="form-check-label" for="flexCheckChecked" class = "search">SamSung</label>
+                            </div>
+                        </form>
+                        
+                    </div>
+
+                    <div class = "col-9">
+                        <div class = "row" id = "list">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type = "text/javascript">
+        var xhttp = new XMLHttpRequest();
+        xhttp.onload = function(){
+            var res = this.responseText;
+            var product = JSON.parse(res);
+
+            console.log(product.products);
+            for(var i = 0;i<product.products[0].images.length;i++){
+            var p = product.products[0].images[i];
+            console.log(product.products[0].images[i]);
+            var li = `
+                            <div class = "col-3" class = "rightSide">
+                                <div class="card" >
+                                    <img src=${product.products[0].images[i]}class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <div class = "row">
+                                            <div class = "col-6">
+                                                <p class = "title">${product.products[0].title}</p>
+                                            </div>
+                                            <div class = "col-6">
+                                                <p class = "price">${product.products[0].price}</p>  
+                                            </div>
+                                        </div>
+                                    <button type="button" class="btn btn-primary">See more details</button>
+                                    </div>
+                                </div>
+                            </div>
+            `;
+            document.getElementById('list').innerHTML += li;
+            }
+            //console.log(pp);  
+        }
+        xhttp.open("GET","https://dummyjson.com/products/search?q=apple");
+        xhttp.send();
+        
+    </script>
+</body>
+</html>
